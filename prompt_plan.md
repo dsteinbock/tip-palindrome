@@ -445,7 +445,7 @@ Done means:
 
 ---
 
-## Prompt 07 — Build index.html UI skeleton (no logic yet)
+## Prompt 07 — Build index.html UI skeleton (no logic yet) ✅ COMPLETED
 
 ```text
 Create index.html and styles.css for a mobile-first dark UI.
@@ -482,7 +482,7 @@ Done means:
 
 ---
 
-## Prompt 08 — Add app.js with DOM wiring skeleton (no calculation yet)
+## Prompt 08 — Add app.js with DOM wiring skeleton (no calculation yet) ✅ COMPLETED
 
 ```text
 Add app.js and wire it into index.html.
@@ -500,7 +500,7 @@ Done means:
 
 ---
 
-## Prompt 09 — Implement parse + validation helpers with tests
+## Prompt 09 — Implement parse + validation helpers with tests ✅ COMPLETED
 
 ```text
 Add validation logic in app.js BUT keep it testable by exporting pure helpers.
@@ -535,7 +535,7 @@ Done means:
 
 ---
 
-## Prompt 10 — Wire Calculate: validate → calculateAll → formatResults → show results
+## Prompt 10 — Wire Calculate: validate → calculateAll → formatResults → show results ✅ COMPLETED
 
 ```text
 In app.js, implement the Calculate click handler fully:
@@ -565,7 +565,7 @@ Done means:
 
 ---
 
-## Prompt 11 — Wire Clear: reset inputs, hide results, focus subtotal
+## Prompt 11 — Wire Clear: reset inputs, hide results, focus subtotal ✅ COMPLETED
 
 ```text
 In app.js, implement the Clear click handler:
@@ -585,7 +585,7 @@ Done means:
 
 ---
 
-## Prompt 12 — Add “Enter triggers Calculate” + focus-select behavior
+## Prompt 12 — Add "Enter triggers Calculate" + focus-select behavior ✅ COMPLETED
 
 ```text
 Improve UX in app.js:
@@ -599,7 +599,7 @@ Done means:
 
 ---
 
-## Prompt 13 — Add manifest.json and connect it in index.html
+## Prompt 13 — Add manifest.json and connect it in index.html ✅ COMPLETED
 
 ```text
 Add manifest.json exactly as described in the spec.
@@ -614,7 +614,7 @@ Done means:
 
 ---
 
-## Prompt 14 — Add service-worker.js and register it safely
+## Prompt 14 — Add service-worker.js and register it safely ✅ COMPLETED
 
 ```text
 Create service-worker.js with cache-first strategy per spec:
@@ -645,7 +645,7 @@ Done means:
 
 ---
 
-## Prompt 15 — Add icons folder + placeholders and final QA checklist
+## Prompt 15 — Add icons folder + placeholders and final QA checklist ✅ COMPLETED
 
 ```text
 Add /icons folder with:
