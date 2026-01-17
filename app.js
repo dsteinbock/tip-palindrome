@@ -158,6 +158,28 @@ function handleClear() {
 calculateBtn.addEventListener('click', handleCalculate);
 clearBtn.addEventListener('click', handleClear);
 
+// Enter key triggers Calculate in both inputs
+subtotalInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        handleCalculate();
+    }
+});
+
+ototalInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        handleCalculate();
+    }
+});
+
+// Select all text on focus for easy editing
+subtotalInput.addEventListener('focus', () => {
+    subtotalInput.select();
+});
+
+ototalInput.addEventListener('focus', () => {
+    ototalInput.select();
+});
+
 // Autofocus subtotal input on page load
 subtotalInput.focus();
 
