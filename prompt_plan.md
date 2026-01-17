@@ -269,7 +269,7 @@ Each prompt ends with “done means…” so the codegen model can self-check.
 
 ---
 
-## Prompt 01 — Create a tiny browser test harness (smoke test)
+## Prompt 01 — Create a tiny browser test harness (smoke test) ✅ COMPLETED
 
 ```text
 You are building a static vanilla JS project (no build tools). Create a minimal in-browser test harness.
