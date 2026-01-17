@@ -76,3 +76,26 @@ export function calculateAll(subtotal, oTotal) {
         subtotal
     };
 }
+
+/**
+ * Format a number as currency with 2 decimal places
+ * @param {number} value - The value to format
+ * @returns {string} - The formatted currency string
+ */
+export function formatCurrency(value) {
+    return value.toFixed(2);
+}
+
+/**
+ * Format the results in the exact output format
+ * @param {number} baseTip - The 20% base tip
+ * @param {number} pTip - The palindrome tip
+ * @param {number} pTotal - The palindrome total
+ * @param {number} oTotal - The original total with tax
+ * @returns {string} - The formatted results string
+ */
+export function formatResults(baseTip, pTip, pTotal, oTotal) {
+    return `20% tip = ${formatCurrency(baseTip)}
+Palindrome tip = ${formatCurrency(pTip)}
+PTotal = ${formatCurrency(pTotal)} = ${formatCurrency(oTotal)} + ${formatCurrency(pTip)}`;
+}

@@ -1,5 +1,5 @@
 // Simple test harness for browser-based testing
-import { simplifySubtotal, calculateBaseTip, generatePalindromeTotal, calculateAll } from './calc.js';
+import { simplifySubtotal, calculateBaseTip, generatePalindromeTotal, calculateAll, formatCurrency, formatResults } from './calc.js';
 
 let testsPassed = 0;
 let testsFailed = 0;
@@ -160,6 +160,23 @@ test('calculateAll: subtotal 5.50, oTotal 6.00', () => {
     assertClose(result.baseTip, 1.00);
     assertClose(result.pTotal, 7.70);
     assertClose(result.pTip, 1.70);
+});
+
+// Formatting tests
+test('formatCurrency: 7 -> "7.00"', () => {
+    assertEqual(formatCurrency(7), '7.00');
+});
+
+test('formatCurrency: 7.7 -> "7.70"', () => {
+    assertEqual(formatCurrency(7.7), '7.70');
+});
+
+test('formatResults: exact multi-line output format', () => {
+    const expected = `20% tip = 7.00
+Palindrome tip = 7.72
+PTotal = 48.84 = 41.12 + 7.72`;
+    const actual = formatResults(7, 7.72, 48.84, 41.12);
+    assertEqual(actual, expected);
 });
 
 // Display results
