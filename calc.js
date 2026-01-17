@@ -42,3 +42,37 @@ export function generatePalindromeTotal(tTotal) {
 
     return parseFloat(`${dollars}.${cents}`);
 }
+
+/**
+ * Calculate the palindrome tip amount
+ * @param {number} pTotal - The palindrome total
+ * @param {number} oTotal - The original total with tax
+ * @returns {number} - The palindrome tip amount
+ */
+export function calculatePalindromeTip(pTotal, oTotal) {
+    return pTotal - oTotal;
+}
+
+/**
+ * Calculate all values for the palindrome tip calculator
+ * @param {number} subtotal - The original subtotal
+ * @param {number} oTotal - The original total with tax
+ * @returns {Object} - All calculated values
+ */
+export function calculateAll(subtotal, oTotal) {
+    const simplified = simplifySubtotal(subtotal);
+    const baseTip = calculateBaseTip(simplified);
+    const tTotal = oTotal + baseTip;
+    const pTotal = generatePalindromeTotal(tTotal);
+    const pTip = calculatePalindromeTip(pTotal, oTotal);
+
+    return {
+        simplified,
+        baseTip,
+        tTotal,
+        pTotal,
+        pTip,
+        oTotal,
+        subtotal
+    };
+}

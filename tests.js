@@ -1,5 +1,5 @@
 // Simple test harness for browser-based testing
-import { simplifySubtotal, calculateBaseTip, generatePalindromeTotal } from './calc.js';
+import { simplifySubtotal, calculateBaseTip, generatePalindromeTotal, calculateAll } from './calc.js';
 
 let testsPassed = 0;
 let testsFailed = 0;
@@ -124,6 +124,42 @@ test('generatePalindromeTotal: 123.45 -> 123.32', () => {
 
 test('generatePalindromeTotal: 9.50 -> 9.90', () => {
     assertClose(generatePalindromeTotal(9.50), 9.90);
+});
+
+// End-to-End Calculation tests
+test('calculateAll: subtotal 35.23, oTotal 41.12', () => {
+    const result = calculateAll(35.23, 41.12);
+    assertClose(result.baseTip, 7.00);
+    assertClose(result.pTotal, 48.84);
+    assertClose(result.pTip, 7.72);
+});
+
+test('calculateAll: subtotal 50.00, oTotal 55.00', () => {
+    const result = calculateAll(50.00, 55.00);
+    assertClose(result.baseTip, 10.00);
+    assertClose(result.pTotal, 65.56);
+    assertClose(result.pTip, 10.56);
+});
+
+test('calculateAll: subtotal 25.75, oTotal 28.50', () => {
+    const result = calculateAll(25.75, 28.50);
+    assertClose(result.baseTip, 5.00);
+    assertClose(result.pTotal, 33.33);
+    assertClose(result.pTip, 4.83);
+});
+
+test('calculateAll: subtotal 10.00, oTotal 11.00', () => {
+    const result = calculateAll(10.00, 11.00);
+    assertClose(result.baseTip, 2.00);
+    assertClose(result.pTotal, 13.31);
+    assertClose(result.pTip, 2.31);
+});
+
+test('calculateAll: subtotal 5.50, oTotal 6.00', () => {
+    const result = calculateAll(5.50, 6.00);
+    assertClose(result.baseTip, 1.00);
+    assertClose(result.pTotal, 7.70);
+    assertClose(result.pTip, 1.70);
 });
 
 // Display results
