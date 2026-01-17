@@ -13,12 +13,13 @@ export function simplifySubtotal(subtotal) {
 }
 
 /**
- * Calculate 20% tip from simplified subtotal
+ * Calculate tip from simplified subtotal
  * @param {number} simplifiedSubtotal - The whole dollar subtotal
- * @returns {number} - The 20% tip amount
+ * @param {number} tipPercent - The tip percentage
+ * @returns {number} - The tip amount
  */
-export function calculateBaseTip(simplifiedSubtotal) {
-    return simplifiedSubtotal / 5;
+export function calculateBaseTip(simplifiedSubtotal, tipPercent) {
+    return simplifiedSubtotal * (tipPercent / 100);
 }
 
 /**
@@ -57,11 +58,12 @@ export function calculatePalindromeTip(pTotal, oTotal) {
  * Calculate all values for the palindrome tip calculator
  * @param {number} subtotal - The original subtotal
  * @param {number} oTotal - The original total with tax
+ * @param {number} tipPercent - The tip percentage
  * @returns {Object} - All calculated values
  */
-export function calculateAll(subtotal, oTotal) {
+export function calculateAll(subtotal, oTotal, tipPercent) {
     const simplified = simplifySubtotal(subtotal);
-    const baseTip = calculateBaseTip(simplified);
+    const baseTip = calculateBaseTip(simplified, tipPercent);
     const tTotal = oTotal + baseTip;
     const pTotal = generatePalindromeTotal(tTotal);
     const pTip = calculatePalindromeTip(pTotal, oTotal);
@@ -73,7 +75,8 @@ export function calculateAll(subtotal, oTotal) {
         pTotal,
         pTip,
         oTotal,
-        subtotal
+        subtotal,
+        tipPercent
     };
 }
 
@@ -88,14 +91,14 @@ export function formatCurrency(value) {
 
 /**
  * Format the results in the exact output format
- * @param {number} baseTip - The 20% base tip
  * @param {number} pTip - The palindrome tip
  * @param {number} pTotal - The palindrome total
  * @param {number} oTotal - The original total with tax
+ * @param {number} subtotal - The original subtotal
  * @returns {string} - The formatted results string
  */
-export function formatResults(baseTip, pTip, pTotal, oTotal) {
-    return `20% tip = ${formatCurrency(baseTip)}
-Palindrome tip = ${formatCurrency(pTip)}
-PTotal = ${formatCurrency(pTotal)} = ${formatCurrency(oTotal)} + ${formatCurrency(pTip)}`;
+export function formatResults(pTip, pTotal, oTotal, subtotal) {
+    const tipPercent = (pTip / subtotal) * 100;
+    return `Tip = ${formatCurrency(pTip)} (${tipPercent.toFixed(2)}%)
++ ${formatCurrency(oTotal)} = ${formatCurrency(pTotal)}`;
 }

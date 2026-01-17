@@ -104,11 +104,12 @@ input[type="number"]::placeholder {
 .button-group {
     display: flex;
     gap: 12px;
+    flex-wrap: wrap;
     margin-bottom: 24px;
 }
 
 .btn {
-    flex: 1;
+    flex: 1 1 140px;
     height: 48px;
     font-size: 16px;
     font-weight: 600;
@@ -148,7 +149,7 @@ input[type="number"]::placeholder {
 }
 
 .results pre {
-    font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+    font-family: inherit;
     font-size: 16px;
     line-height: 1.8;
     color: var(--text-primary);

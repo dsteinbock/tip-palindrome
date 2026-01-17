@@ -78,24 +78,24 @@ test('simplifySubtotal: 100.50 -> 100', () => {
 });
 
 // Base Tip tests
-test('calculateBaseTip: 35 -> 7.00', () => {
-    assertClose(calculateBaseTip(35), 7.00);
+test('calculateBaseTip: 35 at 20% -> 7.00', () => {
+    assertClose(calculateBaseTip(35, 20), 7.00);
 });
 
-test('calculateBaseTip: 50 -> 10.00', () => {
-    assertClose(calculateBaseTip(50), 10.00);
+test('calculateBaseTip: 50 at 20% -> 10.00', () => {
+    assertClose(calculateBaseTip(50, 20), 10.00);
 });
 
-test('calculateBaseTip: 17 -> 3.40', () => {
-    assertClose(calculateBaseTip(17), 3.40);
+test('calculateBaseTip: 17 at 20% -> 3.40', () => {
+    assertClose(calculateBaseTip(17, 20), 3.40);
 });
 
-test('calculateBaseTip: 0 -> 0.00', () => {
-    assertClose(calculateBaseTip(0), 0.00);
+test('calculateBaseTip: 0 at 20% -> 0.00', () => {
+    assertClose(calculateBaseTip(0, 20), 0.00);
 });
 
-test('calculateBaseTip: 1 -> 0.20', () => {
-    assertClose(calculateBaseTip(1), 0.20);
+test('calculateBaseTip: 1 at 20% -> 0.20', () => {
+    assertClose(calculateBaseTip(1, 20), 0.20);
 });
 
 // Palindrome Generation tests
@@ -129,35 +129,35 @@ test('generatePalindromeTotal: 9.50 -> 9.90', () => {
 
 // End-to-End Calculation tests
 test('calculateAll: subtotal 35.23, oTotal 41.12', () => {
-    const result = calculateAll(35.23, 41.12);
+    const result = calculateAll(35.23, 41.12, 20);
     assertClose(result.baseTip, 7.00);
     assertClose(result.pTotal, 48.84);
     assertClose(result.pTip, 7.72);
 });
 
 test('calculateAll: subtotal 50.00, oTotal 55.00', () => {
-    const result = calculateAll(50.00, 55.00);
+    const result = calculateAll(50.00, 55.00, 20);
     assertClose(result.baseTip, 10.00);
     assertClose(result.pTotal, 65.56);
     assertClose(result.pTip, 10.56);
 });
 
 test('calculateAll: subtotal 25.75, oTotal 28.50', () => {
-    const result = calculateAll(25.75, 28.50);
+    const result = calculateAll(25.75, 28.50, 20);
     assertClose(result.baseTip, 5.00);
     assertClose(result.pTotal, 33.33);
     assertClose(result.pTip, 4.83);
 });
 
 test('calculateAll: subtotal 10.00, oTotal 11.00', () => {
-    const result = calculateAll(10.00, 11.00);
+    const result = calculateAll(10.00, 11.00, 20);
     assertClose(result.baseTip, 2.00);
     assertClose(result.pTotal, 13.31);
     assertClose(result.pTip, 2.31);
 });
 
 test('calculateAll: subtotal 5.50, oTotal 6.00', () => {
-    const result = calculateAll(5.50, 6.00);
+    const result = calculateAll(5.50, 6.00, 20);
     assertClose(result.baseTip, 1.00);
     assertClose(result.pTotal, 7.70);
     assertClose(result.pTip, 1.70);
@@ -173,51 +173,64 @@ test('formatCurrency: 7.7 -> "7.70"', () => {
 });
 
 test('formatResults: exact multi-line output format', () => {
-    const expected = `20% tip = 7.00
-Palindrome tip = 7.72
-PTotal = 48.84 = 41.12 + 7.72`;
-    const actual = formatResults(7, 7.72, 48.84, 41.12);
+    const expected = `Tip = 7.72 (21.91%)
++ 41.12 = 48.84`;
+    const actual = formatResults(7.72, 48.84, 41.12, 35.23);
     assertEqual(actual, expected);
 });
 
 // Validation tests
 test('validateInputs: empty subtotal', () => {
-    const result = validateInputs('', '10');
+    const result = validateInputs('', '10', '20');
     assertEqual(result.ok, false);
     assertEqual(result.message, 'Please enter subtotal');
     assertEqual(result.focusId, 'subtotal-input');
 });
 
 test('validateInputs: empty total', () => {
-    const result = validateInputs('10', '');
+    const result = validateInputs('10', '', '20');
     assertEqual(result.ok, false);
     assertEqual(result.message, 'Please enter total');
     assertEqual(result.focusId, 'ototal-input');
 });
 
+test('validateInputs: empty tip', () => {
+    const result = validateInputs('10', '12', '');
+    assertEqual(result.ok, false);
+    assertEqual(result.message, 'Please enter tip %');
+    assertEqual(result.focusId, 'tip-input');
+});
+
 test('validateInputs: negative subtotal', () => {
-    const result = validateInputs('-5', '10');
+    const result = validateInputs('-5', '10', '20');
     assertEqual(result.ok, false);
     assertEqual(result.message, 'Subtotal cannot be negative');
     assertEqual(result.focusId, 'subtotal-input');
 });
 
+test('validateInputs: negative tip', () => {
+    const result = validateInputs('10', '12', '-5');
+    assertEqual(result.ok, false);
+    assertEqual(result.message, 'Tip % cannot be negative');
+    assertEqual(result.focusId, 'tip-input');
+});
+
 test('validateInputs: zero subtotal', () => {
-    const result = validateInputs('0', '10');
+    const result = validateInputs('0', '10', '20');
     assertEqual(result.ok, false);
     assertEqual(result.message, 'Subtotal cannot be zero');
     assertEqual(result.focusId, 'subtotal-input');
 });
 
 test('validateInputs: total less than subtotal', () => {
-    const result = validateInputs('20', '15');
+    const result = validateInputs('20', '15', '20');
     assertEqual(result.ok, false);
     assertEqual(result.message, 'Total should be greater than subtotal');
     assertEqual(result.focusId, 'ototal-input');
 });
 
 test('validateInputs: valid inputs', () => {
-    const result = validateInputs('35.23', '41.12');
+    const result = validateInputs('35.23', '41.12', '20');
     assertEqual(result.ok, true);
     assertEqual(result.message, '');
 });
