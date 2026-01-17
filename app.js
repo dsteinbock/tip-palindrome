@@ -101,7 +101,40 @@ const errorArea = document.getElementById('error-area');
 
 // Event handlers
 function handleCalculate() {
-    console.log('calculate');
+    // Get raw input values
+    const subtotalRaw = subtotalInput.value;
+    const oTotalRaw = ototalInput.value;
+
+    // Validate inputs
+    const validation = validateInputs(subtotalRaw, oTotalRaw);
+
+    if (!validation.ok) {
+        // Show error
+        errorArea.textContent = validation.message;
+        // Hide results
+        resultsArea.style.display = 'none';
+        // Focus the problematic input
+        document.getElementById(validation.focusId).focus();
+        return;
+    }
+
+    // Clear any previous errors
+    errorArea.textContent = '';
+
+    // Parse values
+    const subtotal = parseMoneyInput(subtotalRaw);
+    const oTotal = parseMoneyInput(oTotalRaw);
+
+    // Calculate results
+    const result = calculateAll(subtotal, oTotal);
+
+    // Format output
+    const output = formatResults(result.baseTip, result.pTip, result.pTotal, result.oTotal);
+
+    // Display results
+    const resultsText = document.getElementById('results-text');
+    resultsText.textContent = output;
+    resultsArea.style.display = 'block';
 }
 
 function handleClear() {
