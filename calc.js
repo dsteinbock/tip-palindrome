@@ -11,3 +11,12 @@
 export function simplifySubtotal(subtotal) {
     return Math.floor(subtotal);
 }
+
+/**
+ * Calculate 20% tip from simplified subtotal
+ * @param {number} simplifiedSubtotal - The whole dollar subtotal
+ * @returns {number} - The 20% tip amount
+ */
+export function calculateBaseTip(simplifiedSubtotal) {
+    return simplifiedSubtotal / 5;
+}

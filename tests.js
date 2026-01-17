@@ -1,5 +1,5 @@
 // Simple test harness for browser-based testing
-import { simplifySubtotal } from './calc.js';
+import { simplifySubtotal, calculateBaseTip } from './calc.js';
 
 let testsPassed = 0;
 let testsFailed = 0;
@@ -74,6 +74,27 @@ test('simplifySubtotal: 0.99 -> 0', () => {
 
 test('simplifySubtotal: 100.50 -> 100', () => {
     assertEqual(simplifySubtotal(100.50), 100);
+});
+
+// Base Tip tests
+test('calculateBaseTip: 35 -> 7.00', () => {
+    assertClose(calculateBaseTip(35), 7.00);
+});
+
+test('calculateBaseTip: 50 -> 10.00', () => {
+    assertClose(calculateBaseTip(50), 10.00);
+});
+
+test('calculateBaseTip: 17 -> 3.40', () => {
+    assertClose(calculateBaseTip(17), 3.40);
+});
+
+test('calculateBaseTip: 0 -> 0.00', () => {
+    assertClose(calculateBaseTip(0), 0.00);
+});
+
+test('calculateBaseTip: 1 -> 0.20', () => {
+    assertClose(calculateBaseTip(1), 0.20);
 });
 
 // Display results
