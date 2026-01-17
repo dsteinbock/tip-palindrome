@@ -381,7 +381,7 @@ Done means:
 
 ---
 
-## Prompt 05 — Implement calculatePalindromeTip() + calculateAll() with end-to-end tests
+## Prompt 05 — Implement calculatePalindromeTip() + calculateAll() with end-to-end tests ✅ COMPLETED
 
 ```text
 In calc.js implement:
