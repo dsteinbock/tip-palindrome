@@ -1,5 +1,5 @@
 // Simple test harness for browser-based testing
-import { simplifySubtotal, calculateBaseTip } from './calc.js';
+import { simplifySubtotal, calculateBaseTip, generatePalindromeTotal } from './calc.js';
 
 let testsPassed = 0;
 let testsFailed = 0;
@@ -95,6 +95,35 @@ test('calculateBaseTip: 0 -> 0.00', () => {
 
 test('calculateBaseTip: 1 -> 0.20', () => {
     assertClose(calculateBaseTip(1), 0.20);
+});
+
+// Palindrome Generation tests
+test('generatePalindromeTotal: 48.12 -> 48.84', () => {
+    assertClose(generatePalindromeTotal(48.12), 48.84);
+});
+
+test('generatePalindromeTotal: 7.00 -> 7.70', () => {
+    assertClose(generatePalindromeTotal(7.00), 7.70);
+});
+
+test('generatePalindromeTotal: 10.00 -> 10.01', () => {
+    assertClose(generatePalindromeTotal(10.00), 10.01);
+});
+
+test('generatePalindromeTotal: 99.00 -> 99.99', () => {
+    assertClose(generatePalindromeTotal(99.00), 99.99);
+});
+
+test('generatePalindromeTotal: 100.00 -> 100.00', () => {
+    assertClose(generatePalindromeTotal(100.00), 100.00);
+});
+
+test('generatePalindromeTotal: 123.45 -> 123.32', () => {
+    assertClose(generatePalindromeTotal(123.45), 123.32);
+});
+
+test('generatePalindromeTotal: 9.50 -> 9.90', () => {
+    assertClose(generatePalindromeTotal(9.50), 9.90);
 });
 
 // Display results
