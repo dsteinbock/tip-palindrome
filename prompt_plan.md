@@ -349,7 +349,7 @@ Done means:
 
 ---
 
-## Prompt 04 — Implement generatePalindromeTotal() with edge-case tests
+## Prompt 04 — Implement generatePalindromeTotal() with edge-case tests ✅ COMPLETED
 
 ```text
 In calc.js, implement:
