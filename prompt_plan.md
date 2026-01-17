@@ -416,7 +416,7 @@ Done means:
 
 ---
 
-## Prompt 06 — Add formatCurrency() and formatResults() with exact output tests
+## Prompt 06 — Add formatCurrency() and formatResults() with exact output tests ✅ COMPLETED
 
 ```text
 In calc.js implement:
