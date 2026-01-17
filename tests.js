@@ -1,5 +1,6 @@
 // Simple test harness for browser-based testing
 import { simplifySubtotal, calculateBaseTip, generatePalindromeTotal, calculateAll, formatCurrency, formatResults } from './calc.js';
+import { validateInputs } from './app.js';
 
 let testsPassed = 0;
 let testsFailed = 0;
@@ -177,6 +178,48 @@ Palindrome tip = 7.72
 PTotal = 48.84 = 41.12 + 7.72`;
     const actual = formatResults(7, 7.72, 48.84, 41.12);
     assertEqual(actual, expected);
+});
+
+// Validation tests
+test('validateInputs: empty subtotal', () => {
+    const result = validateInputs('', '10');
+    assertEqual(result.ok, false);
+    assertEqual(result.message, 'Please enter subtotal');
+    assertEqual(result.focusId, 'subtotal-input');
+});
+
+test('validateInputs: empty total', () => {
+    const result = validateInputs('10', '');
+    assertEqual(result.ok, false);
+    assertEqual(result.message, 'Please enter total');
+    assertEqual(result.focusId, 'ototal-input');
+});
+
+test('validateInputs: negative subtotal', () => {
+    const result = validateInputs('-5', '10');
+    assertEqual(result.ok, false);
+    assertEqual(result.message, 'Subtotal cannot be negative');
+    assertEqual(result.focusId, 'subtotal-input');
+});
+
+test('validateInputs: zero subtotal', () => {
+    const result = validateInputs('0', '10');
+    assertEqual(result.ok, false);
+    assertEqual(result.message, 'Subtotal cannot be zero');
+    assertEqual(result.focusId, 'subtotal-input');
+});
+
+test('validateInputs: total less than subtotal', () => {
+    const result = validateInputs('20', '15');
+    assertEqual(result.ok, false);
+    assertEqual(result.message, 'Total should be greater than subtotal');
+    assertEqual(result.focusId, 'ototal-input');
+});
+
+test('validateInputs: valid inputs', () => {
+    const result = validateInputs('35.23', '41.12');
+    assertEqual(result.ok, true);
+    assertEqual(result.message, '');
 });
 
 // Display results
