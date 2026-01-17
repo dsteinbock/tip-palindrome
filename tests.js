@@ -1,4 +1,6 @@
 // Simple test harness for browser-based testing
+import { simplifySubtotal } from './calc.js';
+
 let testsPassed = 0;
 let testsFailed = 0;
 const output = [];
@@ -51,6 +53,27 @@ function assertClose(actual, expected, epsilon = 0.0001, message = '') {
 // Smoke test
 test('Smoke test: 1 equals 1', () => {
     assertEqual(1, 1);
+});
+
+// Simplify Subtotal tests
+test('simplifySubtotal: 35.23 -> 35', () => {
+    assertEqual(simplifySubtotal(35.23), 35);
+});
+
+test('simplifySubtotal: 35.00 -> 35', () => {
+    assertEqual(simplifySubtotal(35.00), 35);
+});
+
+test('simplifySubtotal: 35.99 -> 35', () => {
+    assertEqual(simplifySubtotal(35.99), 35);
+});
+
+test('simplifySubtotal: 0.99 -> 0', () => {
+    assertEqual(simplifySubtotal(0.99), 0);
+});
+
+test('simplifySubtotal: 100.50 -> 100', () => {
+    assertEqual(simplifySubtotal(100.50), 100);
 });
 
 // Display results
