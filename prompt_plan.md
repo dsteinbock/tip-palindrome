@@ -324,7 +324,7 @@ Done means:
 
 ---
 
-## Prompt 03 — Implement calculateBaseTip() with tests
+## Prompt 03 — Implement calculateBaseTip() with tests ✅ COMPLETED
 
 ```text
 In calc.js, implement:
