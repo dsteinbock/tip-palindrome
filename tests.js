@@ -8,7 +8,7 @@ const output = [];
  * @param {string} name - Test name
  * @param {Function} fn - Test function
  */
-export function test(name, fn) {
+function test(name, fn) {
     try {
         fn();
         testsPassed++;
@@ -26,7 +26,7 @@ export function test(name, fn) {
  * @param {*} expected - Expected value
  * @param {string} message - Optional message
  */
-export function assertEqual(actual, expected, message = '') {
+function assertEqual(actual, expected, message = '') {
     if (actual !== expected) {
         const msg = message || `Expected ${expected}, got ${actual}`;
         throw new Error(msg);
@@ -40,7 +40,7 @@ export function assertEqual(actual, expected, message = '') {
  * @param {number} epsilon - Tolerance (default 0.0001)
  * @param {string} message - Optional message
  */
-export function assertClose(actual, expected, epsilon = 0.0001, message = '') {
+function assertClose(actual, expected, epsilon = 0.0001, message = '') {
     const diff = Math.abs(actual - expected);
     if (diff > epsilon) {
         const msg = message || `Expected ${expected} ± ${epsilon}, got ${actual} (diff: ${diff})`;
