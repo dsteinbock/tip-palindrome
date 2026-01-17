@@ -299,7 +299,7 @@ Done means:
 
 ---
 
-## Prompt 02 — Add calc.js skeleton + simplifySubtotal() with unit tests
+## Prompt 02 — Add calc.js skeleton + simplifySubtotal() with unit tests ✅ COMPLETED
 
 ```text
 Add a new module calc.js exporting pure functions.
