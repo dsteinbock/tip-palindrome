@@ -183,4 +183,17 @@ ototalInput.addEventListener('focus', () => {
 // Autofocus subtotal input on page load
 subtotalInput.focus();
 
+// Register service worker for offline support
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then((registration) => {
+                console.log('ServiceWorker registered:', registration.scope);
+            })
+            .catch((error) => {
+                console.log('ServiceWorker registration failed:', error);
+            });
+    });
+}
+
 console.log('App initialized successfully');
