@@ -1,5 +1,5 @@
 // Service Worker for Palindrome Tip Calculator
-const CACHE_NAME = 'tip-calc-v3';
+const CACHE_NAME = 'tip-calc-v4';
 
 const urlsToCache = [
     './',
@@ -8,8 +8,8 @@ const urlsToCache = [
     './app.js',
     './calc.js',
     './manifest.json',
-    './icons/icon-192.png?v=3',
-    './icons/icon-512.png?v=3'
+    './icons/icon-192-v2.png',
+    './icons/icon-512-v2.png'
 ];
 
 // Install event - cache all resources
