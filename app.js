@@ -138,11 +138,27 @@ function handleCalculate() {
 }
 
 function handleClear() {
-    console.log('clear');
+    // Clear both inputs
+    subtotalInput.value = '';
+    ototalInput.value = '';
+
+    // Clear error message
+    errorArea.textContent = '';
+
+    // Hide results area
+    resultsArea.style.display = 'none';
+    const resultsText = document.getElementById('results-text');
+    resultsText.textContent = '';
+
+    // Focus subtotal input
+    subtotalInput.focus();
 }
 
 // Wire up event listeners
 calculateBtn.addEventListener('click', handleCalculate);
 clearBtn.addEventListener('click', handleClear);
+
+// Autofocus subtotal input on page load
+subtotalInput.focus();
 
 console.log('App initialized successfully');
